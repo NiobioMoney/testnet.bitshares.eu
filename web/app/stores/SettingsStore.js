@@ -43,9 +43,7 @@ class SettingsStore {
                 "tr",
                 "ru"
             ],
-            apiServer: [
-                "wss://node.testnet.bitshares.eu",
-            ],
+            apiServer: [],
             unit: [
                 CORE_ASSET,
             ],
