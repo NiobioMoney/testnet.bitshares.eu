@@ -10,12 +10,15 @@ class AssetName extends React.Component {
 	static propTypes = {
 		asset: ChainTypes.ChainAsset.isRequired,
 		replace: React.PropTypes.bool.isRequired,
-		name: React.PropTypes.string.isRequired
+		name: React.PropTypes.string.isRequired,
+		dataPlace: React.PropTypes.string.isRequired
 	};
 
 	static defaultProps = {
 		replace: true,
-		noPrefix: false
+		noPrefix: false,
+		noTip: false,
+		dataPlace: "bottom"
 	};
 
 	shouldComponentUpdate(nextProps) {
@@ -46,20 +49,21 @@ class AssetName extends React.Component {
 			if (isBitAsset && name === "CNY") {
 				optional = optional + counterpart.translate("gateway.assets.bitcny");
 			}
-			let tooltip = `<div><strong>${includeBitAssetDescription ? "bit" : (realPrefix ? realPrefix.toUpperCase() : realPrefix) || ""}${replacedName}</strong><br />${includeBitAssetDescription ? "" : "<br />" + (desc.short ? desc.short : desc.main || "")}${!isBitAsset || includeBitAssetDescription ? optional : ""}</div>`;
+			let tooltip = this.props.noTip ? null : `<div><strong>${includeBitAssetDescription ? "bit" : (realPrefix ? realPrefix.toUpperCase() : realPrefix) || ""}${replacedName}</strong><br />${includeBitAssetDescription ? "" : "<br />" + (desc.short ? desc.short : desc.main || "")}${!isBitAsset || includeBitAssetDescription ? optional : ""}</div>`;
 
 			return (
 				<div
 					className="tooltip inline-block"
 					data-tip={tooltip}
-					data-place="bottom"
+					data-place={this.props.dataPlace}
 					data-html={true}
 				>
 					<span className="asset-prefix-replaced">{prefix}</span><span>{replacedName}</span>
 				</div>
 			);
+
 		} else {
-			return <span><span className={!noPrefix ? "asset-prefix-replaced" : ""}>{!noPrefix ? prefix : null}</span>{name}</span>;
+			return <span><span className={!noPrefix ? "asset-prefix-replaced" : ""}>{!noPrefix ? prefix : null}</span>{replacedName}</span>;
 		}
 
 	}
