@@ -43,7 +43,7 @@ class SettingsStore {
             walletLockTimeout: 60 * 10,
             themes: "darkTheme",
             disableChat: true,
-            passwordLogin: true
+            passwordLogin: false
         });
 
         // If you want a default value to be translated, add the translation to settings in locale-xx.js
