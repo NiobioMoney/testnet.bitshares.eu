@@ -1,3 +1,2 @@
-cd testnet.bitshares.eu/web
+cd $TRAVIS_BUILD_DIR
 npm run-script build
-cd ../../
